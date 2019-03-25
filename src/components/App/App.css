@@ -14,7 +14,7 @@
 .weather-container{
   display: flex;
   justify-content: space-between;
-  width: 600px;
+  width: 580px;
   height: 200px;
   align-items: center;
   margin-top: 80px;
@@ -24,7 +24,7 @@
     padding-top: 10px;
   }
   .weather-container{
-    width: 100%;
+    width: 90%;
     margin-top: 10px;
     height: auto;
     justify-content: space-between;

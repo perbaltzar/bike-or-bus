@@ -1,0 +1,20 @@
+.footer {
+    font-size: 0.8em;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    width: 100%;
+    padding-right: 20px;
+    color: #fff3db;
+}
+
+.footer a {
+    color: #fff3db;
+}
+@media screen and (max-width: 992px) {
+    .footer {
+        padding-right: 0px;
+        justify-content: center;
+        width: 90%;
+    }
+}

@@ -3,6 +3,7 @@ import './App.css';
 import Vehicle from '../Vehicle/';
 import Weather from '../Weather/';
 import Text from '../Text/';
+import Footer from '../Footer';
 import H1 from '../H1';
 import bike from '../../bike.svg';
 import bus from '../../bus.svg';
@@ -121,6 +122,7 @@ class App extends Component {
             <Weather temperatur={this.state.afternoonTemp} weather={this.state.afternoonWeather} />  
           </div>
         </div>
+        <Footer text="© Per Baltzar"></Footer>
       </div>
     );
   }
