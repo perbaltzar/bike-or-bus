@@ -1,5 +1,5 @@
 .vehicle {
-    width: 75%;
+    width: 70%;
     height: auto;
 }
 .vehicle-container {
@@ -11,13 +11,19 @@
     opacity: 0;
     justify-content: center;
     align-items: center;
+    flex-flow: column;
     box-shadow: 7px 7px 1px #42152e;
     margin-top: 60px;
-    transition: 0.5s;
+    transition: 0.5s;   
 }
 .active{
     opacity: 1;
 }
+
+.reason {
+    font-size: 1.2rem;
+}
+
 @media screen and (max-width: 992px) {
     .vehicle-container{
         width: 60vw;

@@ -21,7 +21,8 @@ class App extends Component {
     morningWeather: clear,
     afternoonTemp: 0,
     afternoonWeather: clear,
-    checked: false
+    checked: false,
+    reason: 'Go by Bike!'
   }
 
   componentDidMount(){
@@ -97,9 +98,15 @@ class App extends Component {
     bikeWeathers.forEach(bikeWeather => {
       if (bikeWeather.parameters[1].values[0] < 5) {
         isWeatherGoodEnoughForBike = false;
+        this.setState ( {
+          reason: 'It\'s Too Cold Outside!'
+        }) 
       }
       if (bikeWeather.parameters[15].values[0] > 0) {
         isWeatherGoodEnoughForBike = false;
+        this.setState({
+          reason: 'It\'s Gonna Rain!'
+        })
       }
     });
     return isWeatherGoodEnoughForBike;
@@ -118,20 +125,19 @@ class App extends Component {
         <Text text="Should I" />
         <H1 text="BIKE-OR-BUS" />
         <Text text="To Yrgo Tomorrow?" />
-        <Button text="Check!" onClick={this.handleClick}/>
+        <Button text="Let's Check!" onClick={this.handleClick}/>
         <Vehicle image={this.state.vehicle}
-                  display={this.state.checked}
                   names={this.state.checked ? 'vehicle-container active' : 'vehicle-container'}
+                  reason={this.state.reason}
         >BIKE</Vehicle> 
-        {/* <Text text="Is Your Choice" /> */}
         <div className="weather-container">
           <div>
             <Text text="Morning" />
-            <Weather temperatur={this.state.morningTemp} weather={this.state.morningWeather} />
+            <Weather temperatur={this.state.morningTemp} weather={this.state.morningWeather} active={this.state.checked} />
           </div>
           <div>
             <Text text="Afternoon" />
-            <Weather temperatur={this.state.afternoonTemp} weather={this.state.afternoonWeather} />  
+            <Weather temperatur={this.state.afternoonTemp} weather={this.state.afternoonWeather} active={this.state.checked} />  
           </div>
         </div>
         <Footer text="© Per Baltzar"></Footer>

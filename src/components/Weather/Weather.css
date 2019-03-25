@@ -14,12 +14,20 @@
 }
 .weather img{
     height: 100%;
+    transition: 0.5s;
 }
 .weather h2{
     color: #fff3db;
     font-size: 2rem;
     font-weight: 100;
     padding-left: 12px;
+    transition: 0.5s;
+}
+.active {
+    opacity: 1;
+}
+.inactive {
+    opacity: 0;
 }
 @media screen and (max-width: 992px) {
     .weather{
