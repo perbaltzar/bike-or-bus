@@ -1,0 +1,23 @@
+.weather{
+    height: 150px;
+    width: 250px;
+    background-image: linear-gradient(to top right, #42152e,#5c3048);
+    border-radius: 15px;
+    transition: .4s;
+    border: 6px solid #fff3db;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.weather:hover {
+    transform: scale(1.1);
+}
+.weather img{
+    height: 100%;
+}
+.weather h2{
+    color: #fff3db;
+    font-size: 2rem;
+    font-weight: 100;
+    padding-left: 12px;
+}

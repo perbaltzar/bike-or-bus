@@ -1,0 +1,15 @@
+.vehicle {
+    width: 75%;
+    height: auto;
+}
+.vehicle-container {
+    width: 300px;
+    height: 300px;
+    border: 7px solid #fff3db;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 7px 7px 1px #42152e;
+    margin-top: 80px;
+}
