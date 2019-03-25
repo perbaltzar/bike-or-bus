@@ -34,4 +34,8 @@
     .vehicle{
         width: 60%;
     }
+    .reason{
+        font-size: 0.8rem;
+        letter-spacing: 1px;
+    }
 }
