@@ -8,10 +8,15 @@
     border: 7px solid #fff3db;
     border-radius: 30px;
     display: flex;
+    opacity: 0;
     justify-content: center;
     align-items: center;
     box-shadow: 7px 7px 1px #42152e;
-    margin-top: 80px;
+    margin-top: 60px;
+    transition: 0.5s;
+}
+.active{
+    opacity: 1;
 }
 @media screen and (max-width: 992px) {
     .vehicle-container{

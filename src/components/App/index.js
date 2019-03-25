@@ -4,6 +4,7 @@ import Vehicle from '../Vehicle/';
 import Weather from '../Weather/';
 import Text from '../Text/';
 import Footer from '../Footer';
+import Button from '../Button';
 import H1 from '../H1';
 import bike from '../../bike.svg';
 import bus from '../../bus.svg';
@@ -19,7 +20,8 @@ class App extends Component {
     morningTemp: 0,
     morningWeather: clear,
     afternoonTemp: 0,
-    afternoonWeather: clear
+    afternoonWeather: clear,
+    checked: false
   }
 
   componentDidMount(){
@@ -103,6 +105,12 @@ class App extends Component {
     return isWeatherGoodEnoughForBike;
   }
 
+  handleClick = () => {
+    console.log('hej');
+    this.setState({
+      checked: true
+    });
+  }
   render() {
     return (
       <div className="App">
@@ -110,8 +118,12 @@ class App extends Component {
         <Text text="Should I" />
         <H1 text="BIKE-OR-BUS" />
         <Text text="To Yrgo Tomorrow?" />
-        <Vehicle image={this.state.vehicle}>BIKE</Vehicle> 
-        <Text text="Is Your Choice" />
+        <Button text="Check!" onClick={this.handleClick}/>
+        <Vehicle image={this.state.vehicle}
+                  display={this.state.checked}
+                  names={this.state.checked ? 'vehicle-container active' : 'vehicle-container'}
+        >BIKE</Vehicle> 
+        {/* <Text text="Is Your Choice" /> */}
         <div className="weather-container">
           <div>
             <Text text="Morning" />

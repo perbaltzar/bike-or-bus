@@ -3,7 +3,7 @@ import './Vehicle.css';
 
 const Vehicle = (props) => {
     return (
-        <div className="vehicle-container">
+        < div className={props.names} >
             <img className="vehicle" src={props.image} alt="vehicle" />
         </div>
     );
