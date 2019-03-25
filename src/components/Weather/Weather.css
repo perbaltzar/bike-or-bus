@@ -21,3 +21,16 @@
     font-weight: 100;
     padding-left: 12px;
 }
+@media screen and (max-width: 992px) {
+    .weather{
+        justify-content: space-around;
+        align-items: space-around;
+        width: 88%;
+        height: 15vh;
+        padding: 0px;
+    }
+    .weather h2 {
+         font-size: 1rem;
+         width: 39%;
+    }
+}

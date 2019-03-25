@@ -13,3 +13,14 @@
     box-shadow: 7px 7px 1px #42152e;
     margin-top: 80px;
 }
+@media screen and (max-width: 992px) {
+    .vehicle-container{
+        width: 60vw;
+        height: 60vw;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    .vehicle{
+        width: 60%;
+    }
+}
