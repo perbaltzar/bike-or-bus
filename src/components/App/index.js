@@ -113,7 +113,6 @@ class App extends Component {
   }
 
   handleClick = () => {
-    console.log('hej');
     this.setState({
       checked: true
     });
@@ -121,7 +120,6 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-       
         <Text text="Should I" />
         <H1 text="BIKE-OR-BUS" />
         <Text text="To Yrgo Tomorrow?" />
