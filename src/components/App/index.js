@@ -37,7 +37,6 @@ class App extends Component {
             item.validTime === `2019-03-${date}T16:00:00Z`;
         })
        
-
         // GETTING TEMP AND PRECIPITATION
         const morningTemp = bikeWeathers[0].parameters.filter(bikeWeather => {
           return bikeWeather.name === "t";
@@ -45,6 +44,7 @@ class App extends Component {
         const morningRain = bikeWeathers[0].parameters.filter(bikeWeather => {
           return bikeWeather.name === "pcat";
         })[0].values[0];
+        
         const afternoonTemp = bikeWeathers[1].parameters.filter(bikeWeather => {
           return bikeWeather.name === "t";
         })[0].values[0];
@@ -52,8 +52,19 @@ class App extends Component {
           return bikeWeather.name === "pcat";
         })[0].values[0];
         
+        const checkWeather = [
+          {
+            temp: morningTemp,
+            rain: morningRain
+          },
+          {
+            temp: afternoonTemp,
+            rain: afternoonRain
+          }
+         ]
+         
           this.setState({
-            vehicle: this.shouldIGoByBike(bikeWeathers) ? bike : bus,
+            vehicle: this.shouldIGoByBike(checkWeather) ? bike : bus,
             morningTemp: morningTemp,
             morningWeather: this.whichPrecipitation(morningRain),
             afternoonTemp: afternoonTemp,
@@ -96,13 +107,13 @@ class App extends Component {
   shouldIGoByBike = (bikeWeathers) => {
     let isWeatherGoodEnoughForBike = true;
     bikeWeathers.forEach(bikeWeather => {
-      if (bikeWeather.parameters[1].values[0] < 5) {
+      if (bikeWeather.temp < 5) {
         isWeatherGoodEnoughForBike = false;
         this.setState ( {
           reason: 'It\'s Too Cold Outside!'
         }) 
       }
-      if (bikeWeather.parameters[15].values[0] > 0) {
+      if (bikeWeather.rain > 0) {
         isWeatherGoodEnoughForBike = false;
         this.setState({
           reason: 'It\'s Gonna Rain!'
