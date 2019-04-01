@@ -30,11 +30,12 @@ class App extends Component {
     fetch(url)
       .then(response => response.json())
       .then(json => {
-        const date = this.checkDate(json.timeSeries[0].validTime);
         
+        const day = this.checkDate(json.timeSeries[0].validTime);
+        console.log(json);
         const bikeWeathers = json.timeSeries.filter(item => {
-          return item.validTime === `2019-03-${date}T08:00:00Z` ||
-            item.validTime === `2019-03-${date}T16:00:00Z`;
+          return item.validTime === `2019-04-${day}T08:00:00Z` ||
+            item.validTime === `2019-04-${day}T16:00:00Z`;
         })
        
         // GETTING TEMP AND PRECIPITATION
