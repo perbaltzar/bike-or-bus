@@ -32,12 +32,11 @@ class App extends Component {
       .then(json => {
         
         const day = this.checkDate(json.timeSeries[0].validTime);
-        console.log(json);
+        
         const bikeWeathers = json.timeSeries.filter(item => {
           return item.validTime === `2019-04-${day}T08:00:00Z` ||
             item.validTime === `2019-04-${day}T16:00:00Z`;
         })
-       
         // GETTING TEMP AND PRECIPITATION
         const morningTemp = bikeWeathers[0].parameters.filter(bikeWeather => {
           return bikeWeather.name === "t";
@@ -81,6 +80,9 @@ class App extends Component {
     let date = currentTime.substring(8, 10);
     if (hour > 8) {
       date++;
+    }
+    if (date< 10){
+      return (`0${date}`)
     }
     return (date);
   }
