@@ -27,6 +27,14 @@ class App extends Component {
 
   componentDidMount(){
     const url = 'https://opendata-download-metfcst.smhi.se/api/category/pmp3g/version/2/geotype/point/lon/11.9895/lat/57.7204/data.json';
+    const date = new Date();
+    let year = date.getFullYear();
+    // Translating month to readable with API. 
+    let month = (date.getMonth()+1);
+    if (month < 10){
+      month = `0${month}`;
+    }
+    console.log(year);
     fetch(url)
       .then(response => response.json())
       .then(json => {
@@ -34,8 +42,8 @@ class App extends Component {
         const day = this.checkDate(json.timeSeries[0].validTime);
         
         const bikeWeathers = json.timeSeries.filter(item => {
-          return item.validTime === `2019-04-${day}T08:00:00Z` ||
-            item.validTime === `2019-04-${day}T16:00:00Z`;
+          return item.validTime === `${year}-${month}-${day}T08:00:00Z` ||
+            item.validTime === `${year}-${month}-${day}T16:00:00Z`;
         })
         // GETTING TEMP AND PRECIPITATION
         const morningTemp = bikeWeathers[0].parameters.filter(bikeWeather => {
@@ -81,7 +89,7 @@ class App extends Component {
     if (hour > 8) {
       date++;
     }
-    if (date< 10){
+    if (date < 10){
       return (`0${date}`)
     }
     return (date);
