@@ -40,7 +40,7 @@ class App extends Component {
       .then(json => {
         
         const day = this.checkDate(json.timeSeries[0].validTime);
-        
+        console.log(`${year} ${month} ${day}`)
         const bikeWeathers = json.timeSeries.filter(item => {
           return item.validTime === `${year}-${month}-${day}T08:00:00Z` ||
             item.validTime === `${year}-${month}-${day}T16:00:00Z`;
@@ -90,7 +90,7 @@ class App extends Component {
       date++;
     }
     if (date < 10){
-      return (`0${date}`)
+      return (`${date}`)
     }
     return (date);
   }
