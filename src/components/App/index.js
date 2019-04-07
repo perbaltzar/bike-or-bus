@@ -89,8 +89,8 @@ class App extends Component {
     if (hour > 8) {
       date++;
     }
-    if (date < 10){
-      return (`${date}`)
+    if (date.toString().length < 2){
+      return (`0${date}`)
     }
     return (date);
   }
