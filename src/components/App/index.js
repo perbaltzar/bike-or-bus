@@ -12,9 +12,7 @@ import clear from '../../sun.svg';
 import rain from '../../rain.svg';
 import snow from '../../snow.svg';
 
-
 class App extends Component {
-
   state = {
     vehicle: bike,
     morningTemp: 0,
@@ -23,43 +21,45 @@ class App extends Component {
     afternoonWeather: clear,
     checked: false,
     reason: 'Go by Bike!'
-  }
+  };
 
-  componentDidMount(){
-    const url = 'https://opendata-download-metfcst.smhi.se/api/category/pmp3g/version/2/geotype/point/lon/11.9895/lat/57.7204/data.json';
+  componentDidMount() {
+    const url =
+      'https://opendata-download-metfcst.smhi.se/api/category/pmp3g/version/2/geotype/point/lon/11.9895/lat/57.7204/data.json';
     const date = new Date();
     let year = date.getFullYear();
-    // Translating month to readable with API. 
-    let month = (date.getMonth()+1);
-    if (month < 10){
+    // Translating month to readable with API.
+    let month = date.getMonth() + 1;
+    if (month < 10) {
       month = `0${month}`;
     }
     console.log(year);
     fetch(url)
       .then(response => response.json())
       .then(json => {
-        
         const day = this.checkDate(json.timeSeries[0].validTime);
-        console.log(`${year} ${month} ${day}`)
+        console.log(`${year} ${month} ${day}`);
         const bikeWeathers = json.timeSeries.filter(item => {
-          return item.validTime === `${year}-${month}-${day}T08:00:00Z` ||
-            item.validTime === `${year}-${month}-${day}T16:00:00Z`;
-        })
+          return (
+            item.validTime === `${year}-${month}-${day}T08:00:00Z` ||
+            item.validTime === `${year}-${month}-${day}T16:00:00Z`
+          );
+        });
         // GETTING TEMP AND PRECIPITATION
         const morningTemp = bikeWeathers[0].parameters.filter(bikeWeather => {
-          return bikeWeather.name === "t";
+          return bikeWeather.name === 't';
         })[0].values[0];
         const morningRain = bikeWeathers[0].parameters.filter(bikeWeather => {
-          return bikeWeather.name === "pcat";
+          return bikeWeather.name === 'pcat';
         })[0].values[0];
-        
+
         const afternoonTemp = bikeWeathers[1].parameters.filter(bikeWeather => {
-          return bikeWeather.name === "t";
+          return bikeWeather.name === 't';
         })[0].values[0];
         const afternoonRain = bikeWeathers[1].parameters.filter(bikeWeather => {
-          return bikeWeather.name === "pcat";
+          return bikeWeather.name === 'pcat';
         })[0].values[0];
-        
+
         const checkWeather = [
           {
             temp: morningTemp,
@@ -69,93 +69,102 @@ class App extends Component {
             temp: afternoonTemp,
             rain: afternoonRain
           }
-         ]
-         
-          this.setState({
-            vehicle: this.shouldIGoByBike(checkWeather) ? bike : bus,
-            morningTemp: morningTemp,
-            morningWeather: this.whichPrecipitation(morningRain),
-            afternoonTemp: afternoonTemp,
-            afternoonWeather: this.whichPrecipitation(afternoonRain)
-          });
+        ];
 
-      })
+        this.setState({
+          vehicle: this.shouldIGoByBike(checkWeather) ? bike : bus,
+          morningTemp: morningTemp,
+          morningWeather: this.whichPrecipitation(morningRain),
+          afternoonTemp: afternoonTemp,
+          afternoonWeather: this.whichPrecipitation(afternoonRain)
+        });
+      });
   }
 
-  // Checking if it's past midnight. 
-  checkDate = (currentTime) => {
+  // Checking if it's past midnight.
+  checkDate = currentTime => {
     const hour = currentTime.substring(11, 13);
     let date = currentTime.substring(8, 10);
     if (hour > 8) {
       date++;
     }
-    if (date.toString().length < 2){
-      return (`0${date}`)
+    if (date.toString().length < 2) {
+      return `0${date}`;
     }
-    return (date);
-  }
-  whichPrecipitation = (precipitation) => {
-        switch (precipitation) {
-            case 0:
-                return clear;
-            case 1:
-                return snow;
-            case 2:
-                return snow;
-            case 3:
-                return rain;
-            case 4:
-                return rain;
-            case 5:
-                return rain;
-            case 6:
-                return rain;
-            default:
-                break;
-        }
+    return date;
+  };
+  whichPrecipitation = precipitation => {
+    switch (precipitation) {
+      case 0:
+        return clear;
+      case 1:
+        return snow;
+      case 2:
+        return snow;
+      case 3:
+        return rain;
+      case 4:
+        return rain;
+      case 5:
+        return rain;
+      case 6:
+        return rain;
+      default:
+        break;
     }
+  };
 
-  shouldIGoByBike = (bikeWeathers) => {
+  shouldIGoByBike = bikeWeathers => {
     let isWeatherGoodEnoughForBike = true;
     bikeWeathers.forEach(bikeWeather => {
       if (bikeWeather.temp < 5) {
         isWeatherGoodEnoughForBike = false;
-        this.setState ( {
-          reason: 'It\'s Too Cold Outside!'
-        }) 
+        this.setState({
+          reason: "It's Too Cold Outside!"
+        });
       }
       if (bikeWeather.rain > 0) {
         isWeatherGoodEnoughForBike = false;
         this.setState({
-          reason: 'It\'s Gonna Rain!'
-        })
+          reason: "It's Gonna Rain!"
+        });
       }
     });
     return isWeatherGoodEnoughForBike;
-  }
+  };
 
   handleClick = () => {
     this.setState({
       checked: true
     });
-  }
+  };
   render() {
     return (
       <div className="App">
         <Text text="Should I" />
-        <H1 text="BIKE-OR-BUS" />
+
         <Text text="To Yrgo Tomorrow?" />
-        <Button text="Let's Check!" onClick={this.handleClick}/>
-        <Vehicle image={this.state.vehicle}
-                  names={this.state.checked ? 'vehicle-container active' : 'vehicle-container'}
-                  reason={this.state.reason}
-        >BIKE</Vehicle> 
+        <Button text="Let's Check!" onClick={this.handleClick} />
+        <Vehicle
+          image={this.state.vehicle}
+          names={
+            this.state.checked
+              ? 'vehicle-container active'
+              : 'vehicle-container'
+          }
+          reason={this.state.reason}
+        >
+          BIKE
+        </Vehicle>
         <div className="weather-container">
           <div>
             <Text text="Morning" />
-            <Weather temperatur={this.state.morningTemp} weather={this.state.morningWeather} active={this.state.checked} />
+            <Weather
+              temperatur={this.state.morningTemp}
+              weather={this.state.morningWeather}
+              active={this.state.checked}
+            />
           </div>
-         
         </div>
         <Footer text="© Per Baltzar"></Footer>
       </div>
