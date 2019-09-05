@@ -155,10 +155,7 @@ class App extends Component {
             <Text text="Morning" />
             <Weather temperatur={this.state.morningTemp} weather={this.state.morningWeather} active={this.state.checked} />
           </div>
-          <div>
-            <Text text="Afternoon" />
-            <Weather temperatur={this.state.afternoonTemp} weather={this.state.afternoonWeather} active={this.state.checked} />  
-          </div>
+         
         </div>
         <Footer text="© Per Baltzar"></Footer>
       </div>
