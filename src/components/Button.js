@@ -14,11 +14,6 @@ const ButtonStyled = styled.button`
   color: ${({ theme }) => theme.text};
   font-family: 'Baloo Chettan', cursive;
   font-size: 1rem;
-
-  :hovercursor: pointer;
-  border: 5px solid ${({ theme }) => theme.darkPurple};
-  background: ${({ theme }) => theme.text};
-  color: ${({ theme }) => theme.darkPurple};
 `;
 
 const Button = ({ onClick, text }) => {
