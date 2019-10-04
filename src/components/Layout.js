@@ -11,7 +11,7 @@ const StyledLayout = styled.div`
 const Layout = ({ children }) => {
   return (
     <Div100vh>
-      <StyledLayout>{children}</StyledLayout>;
+      <StyledLayout>{children}</StyledLayout>
     </Div100vh>
   );
 };
