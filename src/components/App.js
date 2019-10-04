@@ -1,22 +1,22 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 import { ThemeProvider } from 'styled-components';
 import Layout from './Layout';
 import Main from './Main';
 import GlobalStyles from '../styles/GlobalStyles';
 import Theme from '../styles/Theme';
+import Settings from './Settings';
+import { Settings as SettingsIcon } from './icons';
 
 const App = props => {
+  const [settings, setSettings] = useState(false);
   return (
     <>
       <ThemeProvider theme={Theme}>
         <GlobalStyles />
         <Layout>
-          <Router>
-            <Switch>
-              <Route path="/" component={Main} />
-            </Switch>
-          </Router>
+          <SettingsIcon settings={settings} onClick={() => setSettings(!settings)} />
+          {settings && <Settings />}
+          <Main />
         </Layout>
       </ThemeProvider>
     </>
