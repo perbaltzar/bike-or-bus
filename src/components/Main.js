@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Headline from './Headline';
 import Button from './Button';
 import Results from './Results';
 import Weather from './Weather';
+import { useUserSettings } from './Context';
 
 const StyledMain = styled.div`
   height: 100%;
@@ -13,19 +14,23 @@ const StyledMain = styled.div`
 `;
 
 const WeatherContainer = styled.div`
-display: flex;
-justify-content: space-between;
+  margin-top: 4vh;
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
 `;
 
 const Main = ({ settings, setSettings }) => {
-  console.log(settings);
+  const [showResults, setShowResults] = useState(false);
+  const { userSettings } = useUserSettings();
+
   return (
     <StyledMain>
       <Headline destination={'Yrgo'} />
-      <Results vehicle="bus" reason={'Too Cold'} />
-      <Button text={"Let's Check"} />
-      <WeatherContainer>  
-        <Weather headline="To" weather={'rain'} temperature={'3'} />
+      <Results vehicle="bus" reason={'Go by bike!'} showResults={showResults} />
+      <Button text={"Let's Check"} onClick={() => setShowResults(!showResults)} />
+      <WeatherContainer>
+        <Weather headline="To" weather={'wind'} temperature={'3'} windspeed={4.3} rain={0} />
         <Weather headline="Home" weather={'snow'} temperature={'3'} />
       </WeatherContainer>
     </StyledMain>
