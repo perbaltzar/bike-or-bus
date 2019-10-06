@@ -16,15 +16,15 @@ const StyledHeadline = styled.div`
     padding: 0px;
     line-height: 1em;
   }
-  p {
+  h4 {
     letter-spacing: 2px;
     font-size: 30px;
     text-shadow: 2px 3px 1px ${({ theme }) => theme.darkPurple};
   }
-  p:nth-child(1)  {
+  h4:nth-child(1)  {
     margin-bottom: -15px;
   }
-  p:nth-child(3) {
+  h4:nth-child(3) {
     margin-top: -12px;
   }
 `;
@@ -32,9 +32,9 @@ const StyledHeadline = styled.div`
 const Headline = ({ destination }) => {
   return (
     <StyledHeadline>
-      <p>Should I</p>
+      <h4>Should I</h4>
       <h1>BIKE-OR-BUS</h1>
-      <p>to {destination} tomorrow</p>
+      <h4>to {destination} tomorrow</h4>
     </StyledHeadline>
   );
 };
