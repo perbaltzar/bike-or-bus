@@ -12,7 +12,7 @@ const StyledResults = styled.div`
   border: 7px solid ${({ theme }) => theme.text};
   box-shadow: 7px 7px 1px ${({ theme }) => theme.darkPurple};
   border-radius: 30px;
-  margin-top: 20px;
+  margin: 20px 0;
   p {
     margin-top: 10px;
   }
