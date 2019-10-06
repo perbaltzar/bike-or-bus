@@ -11,6 +11,9 @@ const GlobalStyles = createGlobalStyle`
     outline: none;
     font-family: 'Baloo Chettan', cursive;
 }
+p{
+    font-size: 14px;
+}
 `;
 
 export default GlobalStyles;
