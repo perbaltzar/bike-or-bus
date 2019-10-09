@@ -14,6 +14,7 @@ const SettingsProvider = ({ children }) => {
         location: {
           longitude: 11.9895,
           latitude: 57.7204,
+          area: 'Göteborg',
           name: 'Yrgo',
         },
         criteria: {
