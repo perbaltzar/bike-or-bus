@@ -4,6 +4,7 @@ import Button from './Button';
 import Line from './Line';
 import { useUserSettings } from './Context';
 import WeatherChoice from './WeatherChoice';
+import Input from './Input';
 
 const StyledSettings = styled.div`
   height: 97vh;
@@ -63,11 +64,34 @@ const Settings = ({ settings }) => {
   const { userSettings } = useUserSettings();
   const [chosenWeathers, setChosenWeathers] = useState([]);
   const [loaded, setLoaded] = useState(false);
+  const [name, setName] = useState();
+  const [area, setArea] = useState();
+  const [minTemp, setMinTemp] = useState();
+  const [maxTemp, setMaxTemp] = useState();
+  const [maxWind, setMaxWind] = useState();
 
   // Initial loading the userSettings
   useEffect(() => {
     if (Object.getOwnPropertyNames(userSettings).length > 0) {
       setChosenWeathers(userSettings.criteria.weathers);
+      setName(userSettings.location.name);
+      setArea(userSettings.location.area);
+      if (userSettings.criteria.minTemp !== 0) {
+        setMinTemp(`${userSettings.criteria.minTemp} °C`);
+      } else {
+        setMinTemp("Don't Care");
+      }
+      if (userSettings.criteria.maxTemp !== 0) {
+        setMaxTemp(`${userSettings.criteria.maxTemp} °C`);
+      } else {
+        setMaxTemp("Don't Care");
+      }
+
+      if (userSettings.criteria.maxWind !== 0) {
+        setMaxWind(`${userSettings.criteria.maxWind} m/s`);
+      } else {
+        setMaxWind("Don't Care");
+      }
       setLoaded(true);
     }
   }, [userSettings]);
@@ -99,12 +123,12 @@ const Settings = ({ settings }) => {
             <Line />
             <section>
               <div>
-                <p>Where do you want to go:</p>
+                <p>Where about is it:</p>
                 <p>What should we call it:</p>
               </div>
               <div>
-                <p>Göteborg</p>
-                <p>Yrgo</p>
+                <Input value={area} onChange={({ target }) => setArea(target.value)} />
+                <Input value={name} onChange={({ target }) => setName(target.value)} />
               </div>
             </section>
           </main>
@@ -118,9 +142,9 @@ const Settings = ({ settings }) => {
                 <p>Highest wind speed:</p>
               </div>
               <div>
-                <p>5 °C</p>
-                <p>Don't care</p>
-                <p>Don't care</p>
+                <Input value={minTemp} onChange={({ target }) => setMinTemp(`${target.value}`)} />
+                <Input value={maxTemp} onChange={({ target }) => setMaxTemp(`${target.value}`)} />
+                <Input value={maxWind} onChange={({ target }) => setMaxWind(`${target.value}`)} />
               </div>
             </section>
             <section>
