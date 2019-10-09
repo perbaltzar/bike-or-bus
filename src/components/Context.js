@@ -20,7 +20,7 @@ const SettingsProvider = ({ children }) => {
           maxWind: 0, // 0 = disabled
           minTemp: 5,
           maxTemp: 0, // 0 = disabled
-          weather: ['clear', 'cloudy'], // drizzle, rain, snowy, windy, freezing rain, etc.
+          weathers: ['clear', 'cloudy'], // drizzle, rain, snowy, windy, freezing rain, etc.
         },
       };
       setUserSettings(defaultSettings);

@@ -5,12 +5,11 @@ import Main from './Main';
 import GlobalStyles from '../styles/GlobalStyles';
 import Theme from '../styles/Theme';
 import Settings from './Settings';
-import Info from './Info';
-import { Settings as SettingsIcon, Exclamation } from './icons';
+import { Settings as SettingsIcon } from './icons';
 import { SettingsProvider } from './Context';
 
 const App = props => {
-  const [settings, setSettings] = useState(false);
+  const [settings, setSettings] = useState(true);
   const [info, setInfo] = useState(false);
 
   // Closing info while opening settings

@@ -8,6 +8,6 @@ const Theme = {
 
   // Background Image
   background: 'linear-gradient(to top right, #15423D, #598f8f)',
-  containerBackground: 'linear-gradient(to top right, #42152e,#5c3048);'
+  containerBackground: 'linear-gradient(to top right, #42152e,#5c3048);',
 };
 export default Theme;
