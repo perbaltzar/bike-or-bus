@@ -3,8 +3,8 @@ import styled from 'styled-components';
 
 const SettingsStyled = styled.div`
   position: absolute;
-  bottom: 5px;
-  left: 5px;
+  bottom: 20px;
+  left: 20px;
   z-index: 100;
 `;
 const Settings = ({ settings, onClick }) => {
