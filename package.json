@@ -3,9 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "react": "^16.8.5",
-    "react-dom": "^16.8.5",
-    "react-scripts": "2.1.8"
+    "react": "^16.10.1",
+    "react-div-100vh": "^0.3.4",
+    "react-scripts": "2.1.8",
+    "styled-components": "^4.4.0"
   },
   "scripts": {
     "start": "react-scripts start",
